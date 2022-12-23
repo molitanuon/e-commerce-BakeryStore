@@ -22,33 +22,30 @@ function Card(props){
 }
 
 //renders all the pastries in the inventory
-class Display extends React.Component {
-
-    render(){
-        return (
-            <div>
-                <span className='header'>Top Pastries </span> 
+function Display(props){
+    return (
+        <div>
+             <span className='header'>Top Pastries </span> 
 
                 <Link to='/checkout' state={{data: orders}}>
-                    <img className= 'cart' src={ this.props.flagCart === false ? "images/cart.jpg" : "images/cartFull.png"}  alt=""/>
+                    <img className= 'cart' src={ props.flagCart === false ? "images/cart.jpg" : "images/cartFull.png"}  alt=""/>
                 </Link>
                
                 <div className="Display">
                     {
-                    this.props.data && this.props.data.length>0 && this.props.data.map((item)=>
+                        props.data && props.data.length>0 && props.data.map((item)=>
                             <Card 
                                 name = {item.name}
                                 image = {item.image}
                                 count = {orders[item.id]}
-                                onClick ={() => this.props.onClick(item.id)}
-                                onClick2 ={() => this.props.onClick2(item.id)}
+                                onClick ={() => props.onClick(item.id)}
+                                onClick2 ={() => props.onClick2(item.id)}
                             />
                     )
                     }
                 </div>
-            </div>
-          );
-    }
+        </div>
+   );
 }
 
 //render dashboard 
