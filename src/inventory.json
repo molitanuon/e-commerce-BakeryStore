@@ -1,0 +1,34 @@
+{
+  "pastries" : [
+  {
+    "id" : 0,
+    "name" : "Cupcake",
+    "price" : 2,
+    "image" : "cupcakes.jpg"
+  },
+  {
+    "id" : 1,
+    "name" : "Tart",
+    "price" : 3,
+    "image" : "tart.jpg"
+  },
+  {
+    "id" : 2,
+    "name" : "Cheese Cake",
+    "price" : 20,
+    "image" : "cheesecake.jpg"
+  },
+  {
+    "id" : 3, 
+    "name" : "Macarons",
+    "price" : 10,
+    "image" : "macaroons.jpg"
+  },
+  {
+    "id" : 4, 
+    "name" : "Creme Brulee",
+    "price" : 7,
+    "image" : "creme_brulee.jpg"
+  }
+]
+}

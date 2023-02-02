@@ -1,0 +1,200 @@
+body{
+    background-color: rgb(255, 228, 196);
+    font-size: large;
+}
+
+.header{
+    text-align: center;
+    font-size: 5vw;
+    font-family: "Papyrus";
+
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 1%;
+    
+}
+
+.Display{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.card{
+    padding: 10px;
+    margin: 20px 10px 5px 10px;
+    border-radius: 10px;
+
+    /* placeholder for now */
+    /* border: 2px solid red; */
+
+    text-align: center; 
+    font-size: 25px;
+    font-family: cursive;
+    font-weight: bold;
+
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    color:rgba(150, 137, 133, 0.851); 
+    box-shadow: 6px 6px;
+
+}
+
+#name{
+    color: rgb(48, 8, 8);
+}
+
+.nav-bar{
+    text-align: center;
+
+    border-radius: 7px;
+    margin-top: 150px;
+    margin-left: 30%;
+}
+
+.Add, .Remove, .Amount{
+    font-size: 2vw;
+    cursor: pointer;
+
+    padding: 2px 10% 2px 10%;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 0.5vw;
+}
+
+.Amount{
+    border-right: 1px solid rgb(0, 0, 0, 0.5);
+    border-left: 1px solid rgb(0, 0, 0, 0.5);
+}
+
+.cart{
+    max-width: 8%;
+    float: inline-end;
+}
+
+/*================================================= Checkout page elements ======================================== */
+.nav-bar-ch{
+    /* border: 2px solid black; */
+    text-align: right;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 25px;
+
+    margin-left: 80%;
+}
+
+a{color:black; text-decoration: none;}
+
+a:hover{color:rgb(236, 147, 113);}
+
+.purchases{
+    border: 2px dashed black;
+    background-color: whitesmoke;
+
+    margin-top: 50px;
+    margin-left: 5%;
+    margin-right: 5%;
+    
+    padding-bottom: 10px;
+
+    border-radius: 4px;
+
+}
+
+
+h1{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+
+}
+
+h2{
+    margin-right: 15px;
+    text-align: right;
+    padding-top: 100px;
+    margin-bottom: 100px;
+}
+
+th{
+    width: 4%;
+    padding-top: 20px;
+    padding-bottom: 10px;
+} 
+
+td{
+    text-align: left;
+    padding-right: 30px;
+}
+
+.submit{
+    width: 30%;
+    margin-left: 35%;
+    background-color: rgb(150, 244, 137);
+    border-radius: 4px;
+    margin-top: 30px;
+}
+
+form{
+    margin-top: 50px;
+}
+
+label, input{
+   margin-left: 10px;
+   margin-bottom: 30px;
+}
+
+label{
+    font-weight: bold;
+}
+
+input{
+    min-width: 30%;
+}
+
+/*================================================= Business Pg ======================================== */
+
+.loginForm{
+    /* border: 2px dashed black; */
+    background-color: white;
+
+    text-align: center;
+    font-family: Chalkduster, fantasy;
+    font-size: larger;
+
+    padding-top: 30px;
+    margin-top: 90px;
+    margin-left: 190px;
+    margin-right: 190px;
+
+    height: 500px;
+    border-radius: 20px;
+
+}
+
+.login{
+    text-align: center;
+    width: 100px;
+    margin-top: 10px;
+}
+
+.productForm{
+    /* border: 2px solid red; */
+
+    background-color: white;
+    font-size: 10px;
+
+    position: absolute;
+    top:0;
+    left: 0;
+
+    width: 50%;
+    margin-left: 50%;
+    height: 100%;
+}
+
+.close{
+    text-align: center;
+    margin-top: 50%;
+    width: 100px;
+    height: 40px;
+    margin-right: 20px;
+}
