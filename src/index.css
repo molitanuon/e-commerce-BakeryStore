@@ -25,12 +25,6 @@ body{
     border-radius: 10px;
 
     /* placeholder for now */
-<<<<<<< HEAD
-    /* border: 2px solid red; */
-=======
-    border: 2px solid red;
->>>>>>> master/main
-
     text-align: center; 
     font-size: 25px;
     font-family: cursive;
@@ -41,10 +35,6 @@ body{
 
     color:rgba(150, 137, 133, 0.851); 
     box-shadow: 6px 6px;
-<<<<<<< HEAD
-
-=======
->>>>>>> master/main
 }
 
 #name{
@@ -79,11 +69,8 @@ body{
     float: inline-end;
 }
 
-<<<<<<< HEAD
 /*================================================= Checkout page elements ======================================== */
-=======
-/* Second page elements */
->>>>>>> master/main
+
 .nav-bar-ch{
     /* border: 2px solid black; */
     text-align: right;
@@ -115,20 +102,12 @@ a:hover{color:rgb(236, 147, 113);}
 h1{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: center;
-<<<<<<< HEAD
-
-=======
->>>>>>> master/main
 }
 
 h2{
     margin-right: 15px;
     text-align: right;
     padding-top: 100px;
-<<<<<<< HEAD
-    margin-bottom: 100px;
-=======
->>>>>>> master/main
 }
 
 th{
@@ -147,7 +126,6 @@ td{
     margin-left: 35%;
     background-color: rgb(150, 244, 137);
     border-radius: 4px;
-<<<<<<< HEAD
     margin-top: 30px;
 }
 
@@ -216,6 +194,4 @@ input{
     height: 40px;
     margin-right: 20px;
 }
-=======
-}
->>>>>>> master/main
+
