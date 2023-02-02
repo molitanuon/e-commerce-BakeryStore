@@ -6,6 +6,10 @@ import data from "./inventory";
 const pastries = data.pastries;
 const orders = Array(pastries.length).fill(0);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master/main
 //render a single pastry card
 function Card(props){
     return(
@@ -22,11 +26,19 @@ function Card(props){
 
 //renders all the pastries in the inventory
 function Display(props){
+<<<<<<< HEAD
         return (
             <div>
                 <span className='header'>Top Pastries </span> 
 
                 <Link to='/checkout' state={orders}>
+=======
+    return (
+        <div>
+             <span className='header'>Top Pastries </span> 
+
+                <Link to='/checkout' state={{data: orders}}>
+>>>>>>> master/main
                     <img className= 'cart' src={ props.flagCart === false ? "images/cart.jpg" : "images/cartFull.png"}  alt=""/>
                 </Link>
                
@@ -43,8 +55,13 @@ function Display(props){
                     )
                     }
                 </div>
+<<<<<<< HEAD
             </div>
           );
+=======
+        </div>
+   );
+>>>>>>> master/main
 }
 
 //render dashboard 
@@ -72,14 +89,31 @@ class Home extends React.Component{
 
     render(){
         return(
+<<<<<<< HEAD
             <Display 
                 data = {pastries}
                 onClick ={(id) => this.addHandleClick(id)}
                 onClick2 ={(id) => this.subHandleClick(id)}
                 flagCart = {this.state.flagCart}
             />
+=======
+            <div>
+                <div className='display'>
+                    <Display 
+                        data = {pastries}
+                        onClick ={(id) => this.addHandleClick(id)}
+                        onClick2 ={(id) => this.subHandleClick(id)}
+                        flagCart = {this.state.flagCart}
+                    />
+                </div>
+            </div>
+>>>>>>> master/main
         )
     }
 }
 
+<<<<<<< HEAD
 export default Home;
+=======
+export default Home;
+>>>>>>> master/main
