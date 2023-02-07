@@ -29,6 +29,15 @@
     "name" : "Creme Brulee",
     "price" : 7,
     "image" : "creme_brulee.jpg"
-  }
-]
+  }],
+  
+  "orders" : [
+    {
+        "firstName" : "Test",
+        "lastName" : "Lee", 
+        "telephone" : "123-212-1212",
+        "email" : "test121@gmail.com"
+
+    }
+  ]
 }

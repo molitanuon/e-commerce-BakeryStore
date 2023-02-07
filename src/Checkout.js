@@ -2,28 +2,30 @@ import React from 'react';
 import {Link, useLocation} from "react-router-dom";
 
 import './index.css';
-import data from "./inventory";
-
-const pastries = data.pastries;
 
 const Checkout = (props) => {
 
     //get orders from props 
     const location = useLocation();
-    let datas = location.state;
+    let datas = location.state.orders;
+    let pasData = location.state.pastries;
     let total = 0;
 
-    
     const orderSubmit=(event)=>{
+        event.preventDefault();
         if(total > 0)
         {
-            alert("Thank you for ordering!");
+            const customer = JSON.stringify({
+                "firstName" : event.target.firstname.value,
+                "lastName" : event.target.lastname.value,
+                "telephone" : event.target.tele.value,
+                "email" : event.target.email.value
+            });
+
         }
         else{
             alert("Your cart is empty. Please return to the home page to add to cart. Thank you!");
         }
-        event.preventDefault();
-        // navigate('/');
         window.location='/';
     };
 
@@ -46,12 +48,12 @@ const Checkout = (props) => {
                     {   
                         datas && datas.length > 0 && datas.map((amt,id)=>{
                             if(amt !== 0){
-                                total += amt * pastries[id]['price'];
+                                total += amt * pasData[id]['price'];
                                 return(
                                     <tr> 
-                                        <td>{pastries[id]['name']}</td>
+                                        <td>{pasData[id]['name']}</td>
                                         <td style={{textAlign: "center"}}>{amt}</td>
-                                        <td style={{textAlign: "center"}}>${amt * pastries[id]['price']}</td>
+                                        <td style={{textAlign: "center"}}>${amt * pasData[id]['price']}</td>
                                     </tr>
                                 )
                             }
@@ -65,13 +67,13 @@ const Checkout = (props) => {
                 <div> 
                     <h1> Contact Information </h1>
                     <form onSubmit={orderSubmit}>
-                        <label> First Name:  <input type="text" required/> </label>
+                        <label htmlFor="firstname"> First Name:  <input type="text" name="firstname" required/> </label>
 
-                        <label> Last Name: <input type="text" required/></label><br/>
+                        <label htmlFor="lastname"> Last Name: <input type="text" name="lastname" required/></label><br/>
 
-                        <label> Telephone: <input type="tel" pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'  placeholder="123-456-2121" required/> </label>
+                        <label htmlFor="tele"> Telephone: <input type="tel" name="tele" pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'  placeholder="123-456-2121" required/> </label>
 
-                        <label > Email: <input type="email" placeholder='myemail@gmail.com' required/> </label>
+                        <label htmlFor="email"> Email: <input type="email" name="email" placeholder='myemail@gmail.com' required/> </label>
 
                         <button className='submit'> Submit </button>
 

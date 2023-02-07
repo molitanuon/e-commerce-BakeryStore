@@ -2,9 +2,8 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import './index.css';
 
-import data from "./inventory";
-const pastries = data.pastries;
-const orders = Array(pastries.length).fill(0);
+// need to changing length
+const orders = Array(5).fill(0);
 
 //render a single pastry card
 function Card(props){
@@ -22,11 +21,16 @@ function Card(props){
 
 //renders all the pastries in the inventory
 function Display(props){
+
+    const myData = {
+        orders : orders, 
+        pastries : props.data
+    }    
         return (
             <div>
                 <span className='header'>Top Pastries </span> 
 
-                <Link to='/checkout' state={orders}>
+                <Link to='/checkout' state={myData}>
                     <img className= 'cart' src={ props.flagCart === false ? "images/cart.jpg" : "images/cartFull.png"}  alt=""/>
                 </Link>
                
@@ -53,7 +57,27 @@ class Home extends React.Component{
         super(props);
         this.state ={
             flagCart: orders.reduce((res, num) => res += num) === 0 ? false : true,
+            isLoading: true, 
+            pastries: [],
+            error: null
         }
+    }
+
+    // Getting the pastries data from the API 
+    // for reference : https://betterprogramming.pub/how-to-fetch-data-from-an-api-with-react-hooks-9e7202b8afcd
+    getFetchPastries(){
+        this.setState({
+            loading: true
+        }, () => {
+            fetch("http://localhost:3000/pastries")
+                .then(res => res.json())
+                .then(result => this.setState({loading : false, pastries: result}))
+                .catch(console.log);
+        });
+    }
+
+    componentDidMount(){
+        this.getFetchPastries();
     }
 
     addHandleClick(id){
@@ -73,7 +97,7 @@ class Home extends React.Component{
     render(){
         return(
             <Display 
-                data = {pastries}
+                data = {this.state.pastries}
                 onClick ={(id) => this.addHandleClick(id)}
                 onClick2 ={(id) => this.subHandleClick(id)}
                 flagCart = {this.state.flagCart}

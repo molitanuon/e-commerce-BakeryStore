@@ -1,8 +1,5 @@
-import React, { useState }from 'react';
+import React, { useEffect, useState }from 'react';
 import './index.css';
-
-import data from "./inventory";
-const pastries = data.pastries;
 
 //render a single pastry card
 function Card(props){
@@ -19,6 +16,10 @@ function Display(props){
        setProduct({addProduct : user.addProduct ? false : true});
     }
 
+    const writeToInventory=(event)=>{
+
+    }
+
     return(
         <>
             <h1> Welcome Bakery Owner!</h1>
@@ -26,17 +27,16 @@ function Display(props){
             {/* SUBMIT PRODUCT */}
                 {user.addProduct ? (
                     <div className='productForm'>
-                        <h1> ADD A PRODUCT FORM</h1>
+                        <button onClick={addProduct}> X </button>
 
-                        <form onSubmit={""}>
-                        <label htmlFor="name">  </label> <input type="text" name='name' required/> <br/>
-                        <label htmlFor="price">  </label> <input type="number" name='password' required/> <br/>
-                        <label htmlFor="image">  </label> <input type="file" name='image'   accept="image/png, image/jpeg" required/> <br/>
+                        <h1 style={{fontFamily: "fantasy", marginLeft:"-200px", fontSize:"15px"}}> ADD PRODUCT TO INVENTORY</h1>
+
+                        <form className="addForm" onSubmit={writeToInventory}>
+                        <label htmlFor="name"> Name: </label> <input type="text" name='name' required/>  <br/>
+                        <label htmlFor="price">  Price: </label> <input type="number" name='price' required/> <br/>
+                        <label htmlFor="image"> Image:  </label>  <input type="file" name='image'   accept="image/png, image/jpeg" required/> <br/>
                         
-                        <div style={{marginLeft: "40%"}}>
-                            <button className="close"> Submit </button>
-                            <button className="close" onClick={addProduct}> Close </button>
-                        </div>
+                        <button className="submit2"> Submit </button>
 
                         </form>
 
@@ -68,7 +68,23 @@ function Display(props){
 function Login(){
 
     // MUST CHANGE BACK TO FALSE AFTER DONE TESTING
-    const [user, setLog] = useState({isLoggedIn: false});
+    const [user, setLog] = useState({isLoggedIn: true});
+
+    const [hasError, setErrors] = useState(false);
+    const [state, setState] = useState({});
+
+    //fetch data from API using React Hooks
+    async function fetchData(){
+        const res = await fetch("http://localhost:3000/pastries");
+        res
+            .json()
+            .then(res => setState(res))
+            .catch(err => setErrors(err));
+    }
+    
+    useEffect(() => {
+        fetchData();
+    },[]);
 
     const handleSubmit = e =>{
         e.preventDefault();
@@ -93,7 +109,7 @@ function Login(){
                     </div>
                        
                     <Display 
-                        data = {pastries}
+                        data = {state}
                     />
                 </>
             )

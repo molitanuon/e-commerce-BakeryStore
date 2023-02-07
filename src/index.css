@@ -138,10 +138,6 @@ label, input{
    margin-bottom: 30px;
 }
 
-label{
-    font-weight: bold;
-}
-
 input{
     min-width: 30%;
 }
@@ -172,6 +168,7 @@ input{
     margin-top: 10px;
 }
 
+/*                               Add a product Form                                                  */
 .productForm{
     /* border: 2px solid red; */
 
@@ -183,15 +180,24 @@ input{
     left: 0;
 
     width: 50%;
-    margin-left: 50%;
+    margin-left: 70%;
     height: 100%;
 }
 
-.close{
+.addForm{
+    margin-left: 10%;
+}
+
+label{
+    font-size: 15px;
+    font-family: fantasy;
+}
+
+.submit2{
     text-align: center;
-    margin-top: 50%;
-    width: 100px;
-    height: 40px;
-    margin-right: 20px;
+    margin-top: 5%;
+    width: 90px;
+    height: 20px;
+    margin-left: 12%;
 }
 
