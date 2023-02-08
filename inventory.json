@@ -1,43 +1,106 @@
 {
-  "pastries" : [
-  {
-    "id" : 0,
-    "name" : "Cupcake",
-    "price" : 2,
-    "image" : "cupcakes.jpg"
-  },
-  {
-    "id" : 1,
-    "name" : "Tart",
-    "price" : 3,
-    "image" : "tart.jpg"
-  },
-  {
-    "id" : 2,
-    "name" : "Cheese Cake",
-    "price" : 20,
-    "image" : "cheesecake.jpg"
-  },
-  {
-    "id" : 3, 
-    "name" : "Macarons",
-    "price" : 10,
-    "image" : "macaroons.jpg"
-  },
-  {
-    "id" : 4, 
-    "name" : "Creme Brulee",
-    "price" : 7,
-    "image" : "creme_brulee.jpg"
-  }],
-  
-  "orders" : [
+  "pastries": [
     {
-        "firstName" : "Test",
-        "lastName" : "Lee", 
-        "telephone" : "123-212-1212",
-        "email" : "test121@gmail.com"
-
+      "id": 0,
+      "name": "Cupcake",
+      "price": 2,
+      "image": "cupcakes.jpg"
+    },
+    {
+      "id": 1,
+      "name": "Tart",
+      "price": 3,
+      "image": "tart.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Cheese Cake",
+      "price": 20,
+      "image": "cheesecake.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Macarons",
+      "price": 10,
+      "image": "macaroons.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Creme Brulee",
+      "price": 7,
+      "image": "creme_brulee.jpg"
+    }
+  ],
+  "orders": [
+    {
+      "firstName": "Test",
+      "lastName": "Lee",
+      "telephone": "123-212-1212",
+      "email": "test121@gmail.com",
+      "purchase": [
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      "id": 0
+    },
+    {
+      "firstName": "mary",
+      "lastName": "lee",
+      "telephone": "111-111-1111",
+      "email": "test@gmail.com",
+      "purchase": [
+        0,
+        3,
+        0,
+        1,
+        0
+      ],
+      "id": 1
+    },
+    {
+      "firstName": "mary",
+      "lastName": "weq",
+      "telephone": "125-544-4545",
+      "email": "mwea@gmail.com",
+      "purchase": [
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "id": 2
+    },
+    {
+      "firstName": "Raymond",
+      "lastName": "Alarcon",
+      "telephone": "125-544-4545",
+      "email": "raymondalarcon96@gmail.com",
+      "purchase": [
+        0,
+        2,
+        0,
+        0,
+        0
+      ],
+      "id": 3
+    },
+    {
+      "firstName": "mary",
+      "lastName": "Nuon",
+      "telephone": "121-121-1212",
+      "email": "mwea2321@gmail.com",
+      "purchase": [
+        0,
+        2,
+        1,
+        0,
+        1
+      ],
+      "id": 4
     }
   ]
 }

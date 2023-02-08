@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import './index.css';
+import {GET} from './api.js';
 
 // need to changing length
 const orders = Array(5).fill(0);
@@ -57,27 +58,20 @@ class Home extends React.Component{
         super(props);
         this.state ={
             flagCart: orders.reduce((res, num) => res += num) === 0 ? false : true,
-            isLoading: true, 
-            pastries: [],
-            error: null
+            pastries: []
         }
     }
 
-    // Getting the pastries data from the API 
-    // for reference : https://betterprogramming.pub/how-to-fetch-data-from-an-api-with-react-hooks-9e7202b8afcd
-    getFetchPastries(){
-        this.setState({
-            loading: true
-        }, () => {
-            fetch("http://localhost:3000/pastries")
-                .then(res => res.json())
-                .then(result => this.setState({loading : false, pastries: result}))
-                .catch(console.log);
-        });
+    // Getting the pastries data from the API using axios
+    async getData(apiEndpoint) {
+        const { data: Items } = await GET(apiEndpoint);
+        if (Items) {
+          this.setState({Items});
+        }
     }
 
     componentDidMount(){
-        this.getFetchPastries();
+        this.getData('pastries');
     }
 
     addHandleClick(id){
@@ -97,7 +91,7 @@ class Home extends React.Component{
     render(){
         return(
             <Display 
-                data = {this.state.pastries}
+                data = {this.state.Items}
                 onClick ={(id) => this.addHandleClick(id)}
                 onClick2 ={(id) => this.subHandleClick(id)}
                 flagCart = {this.state.flagCart}

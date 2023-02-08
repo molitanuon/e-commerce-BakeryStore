@@ -2,6 +2,7 @@ import React from 'react';
 import {Link, useLocation} from "react-router-dom";
 
 import './index.css';
+import {POST} from './api.js';
 
 const Checkout = (props) => {
 
@@ -15,13 +16,18 @@ const Checkout = (props) => {
         event.preventDefault();
         if(total > 0)
         {
-            const customer = JSON.stringify({
+            const customer = {
                 "firstName" : event.target.firstname.value,
                 "lastName" : event.target.lastname.value,
                 "telephone" : event.target.tele.value,
-                "email" : event.target.email.value
-            });
+                "email" : event.target.email.value,
+                "purchase" : datas
+            };
 
+            // posting the customer data to inventory using axios
+            POST('orders', customer);
+
+            alert("Thank you ordering!")
         }
         else{
             alert("Your cart is empty. Please return to the home page to add to cart. Thank you!");

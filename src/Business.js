@@ -1,5 +1,7 @@
 import React, { useEffect, useState }from 'react';
+import { Link } from 'react-router-dom';
 import './index.css';
+import {GET} from './api.js';
 
 //render a single pastry card
 function Card(props){
@@ -49,20 +51,16 @@ function Display(props){
                     <Card 
                         name = {item.name}
                         image = {item.image}
-                        />
-                    )
+                    />
+                )
             }
                         
             {/* Upload a product */}
             <button className='card' onClick={addProduct} style={{backgroundColor:'seashell'}} > <p style={{fontSize:'70px', color:'black'}}> + </p> </button>
 
             </div >
-            
         </>
-
     );
-    
-   
 }
 
 function Login(){
@@ -70,22 +68,35 @@ function Login(){
     // MUST CHANGE BACK TO FALSE AFTER DONE TESTING
     const [user, setLog] = useState({isLoggedIn: true});
 
-    const [hasError, setErrors] = useState(false);
-    const [state, setState] = useState({});
+    const [state, setState] = useState({pastries: []});
+    const [customer, setState2] = useState({order:[]});
 
-    //fetch data from API using React Hooks
-    async function fetchData(){
-        const res = await fetch("http://localhost:3000/pastries");
-        res
-            .json()
-            .then(res => setState(res))
-            .catch(err => setErrors(err));
+    async function fetchData(apiEndpoint) {
+        const { data: Items } = await GET(apiEndpoint);
+        if (Items) {
+          setState({pastries:Items});
+        }
     }
-    
+
+    async function fetchOrders(apiEndpoint) {
+        const { data: Items } = await GET(apiEndpoint);
+        if (Items) {
+          setState2({order:Items});
+        }
+    }
+
     useEffect(() => {
-        fetchData();
+        fetchData('pastries');
+        fetchOrders('orders');
     },[]);
 
+    // data to pass to order checklist
+    const myData = {
+        orders : customer.order, 
+        pastries : state.pastries
+    }    
+
+    // Check if user is validated
     const handleSubmit = e =>{
         e.preventDefault();
         if(e.target.username.value === process.env.REACT_APP_USERNAME && e.target.password.value === process.env.REACT_APP_PASSWORD){
@@ -97,38 +108,39 @@ function Login(){
         }
     };
 
+    // Log user out
     const logout = () =>{
         setLog({isLoggedIn: false});
     }
 
    if(user.isLoggedIn === true){
-            return(
-                <>
-                    <div className='navbar'>
-                        <button onClick={logout}>Logout</button>
-                    </div>
-                       
-                    <Display 
-                        data = {state}
-                    />
-                </>
-            )
-        }
-        else{
-            // Log In form for owner
-            return(
-                <div className='loginForm'>
-                    Log In
-
-                    <form onSubmit={handleSubmit}>
-                        <label htmlFor="username">  </label> <input type="text" name='username' placeholder="USERNAME" required/> <br/>
-                        <label htmlFor="password">  </label> <input type="password" name='password' placeholder="PASSWORD" required/> <br/>
-                        <button className='login'> Login </button>
-                    </form>
-
+        return(
+            <>
+                <div className='navbar'>
+                    <button onClick={logout}>Logout</button>
+                    {/* to do : an order checklist, pass pastries list with state */}
+                    {/* <button onClick={""}>Orders</button> */}
+                    <Link to='/checklist' state={myData}> Orders </Link>
                 </div>
-            )
-        }
+                       
+                <Display 
+                    data = {state.pastries}
+                />
+            </>
+        )
+    }
+    else{
+        // Log In form for owner
+        return(
+            <div className='loginForm'>
+                Log In
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="username">  </label> <input type="text" name='username' placeholder="USERNAME" required/> <br/>
+                    <label htmlFor="password">  </label> <input type="password" name='password' placeholder="PASSWORD" required/> <br/>
+                    <button className='login'> Login </button>
+                </form>
+            </div>
+        )
+    }
 }
-
 export default Login;
