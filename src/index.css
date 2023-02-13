@@ -131,15 +131,14 @@ td{
 
 form{
     margin-top: 50px;
+    padding-left: 10%;
 }
 
-label, input{
-   margin-left: 10px;
+input.contact{
+   margin-left:5px;
    margin-bottom: 30px;
-}
-
-input{
-    min-width: 30%;
+   min-width: 30%;
+   margin-right: 30px;
 }
 
 /*================================================= Business Pg ======================================== */
@@ -159,7 +158,6 @@ input{
 
     height: 500px;
     border-radius: 20px;
-
 }
 
 .login{
@@ -179,18 +177,23 @@ input{
     top:0;
     left: 0;
 
-    width: 50%;
+    width: 30%;
     margin-left: 70%;
     height: 100%;
 }
 
 .addForm{
-    margin-left: 10%;
+    text-align: left;
 }
 
-label{
+label.addProd{
     font-size: 15px;
     font-family: fantasy;
+}
+
+input.addProd{
+    margin-left: 10px;
+    margin-bottom: 15px;
 }
 
 .submit2{
@@ -201,3 +204,22 @@ label{
     margin-left: 12%;
 }
 
+/*                          ORDERS CHECKLIST                                    */
+.listTitle{
+    font-size: 20px;
+    text-align: left;
+    color: black;
+
+}
+
+.orderList{
+    font-size: 15px;
+    margin-top: 0px;
+    color: gray;
+}
+
+input.largerCheckbox{
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+}

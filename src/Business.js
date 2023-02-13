@@ -31,12 +31,12 @@ function Display(props){
                     <div className='productForm'>
                         <button onClick={addProduct}> X </button>
 
-                        <h1 style={{fontFamily: "fantasy", marginLeft:"-200px", fontSize:"15px"}}> ADD PRODUCT TO INVENTORY</h1>
+                        <h1 style={{fontFamily: "fantasy", fontSize:"15px"}}> ADD PRODUCT TO INVENTORY</h1>
 
                         <form className="addForm" onSubmit={writeToInventory}>
-                        <label htmlFor="name"> Name: </label> <input type="text" name='name' required/>  <br/>
-                        <label htmlFor="price">  Price: </label> <input type="number" name='price' required/> <br/>
-                        <label htmlFor="image"> Image:  </label>  <input type="file" name='image'   accept="image/png, image/jpeg" required/> <br/>
+                        <label htmlFor="name" className='addProd'> Name: </label> <input type="text" name='name' className='addProd' required/>  <br/>
+                        <label htmlFor="price"  className='addProd'>  Price: </label> <input type="number" name='price' className='addProd' required/> <br/>
+                        <label htmlFor="image"  className='addProd'> Image:  </label>  <input type="file" name='image'   accept="image/png, image/jpeg" className='addProd' required/> <br/>
                         
                         <button className="submit2"> Submit </button>
 

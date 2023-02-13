@@ -4,9 +4,9 @@ import {Link, useLocation} from "react-router-dom";
 import './index.css';
 import {POST} from './api.js';
 
-const Checkout = (props) => {
+const Checkout = () => {
 
-    //get orders from props 
+    //get orders from ocation 
     const location = useLocation();
     let datas = location.state.orders;
     let pasData = location.state.pastries;
@@ -73,13 +73,13 @@ const Checkout = (props) => {
                 <div> 
                     <h1> Contact Information </h1>
                     <form onSubmit={orderSubmit}>
-                        <label htmlFor="firstname"> First Name:  <input type="text" name="firstname" required/> </label>
+                        <label htmlFor="firstname" classname="contact"> First Name:  <input type="text" name="firstname"  className="contact" required/> </label>
 
-                        <label htmlFor="lastname"> Last Name: <input type="text" name="lastname" required/></label><br/>
+                        <label htmlFor="lastname" classname="contact"> Last Name: <input type="text" name="lastname" className="contact" required/></label><br/>
 
-                        <label htmlFor="tele"> Telephone: <input type="tel" name="tele" pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'  placeholder="123-456-2121" required/> </label>
+                        <label htmlFor="tele" classname="contact"> Telephone: <input type="tel" name="tele" className="contact" pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'  placeholder="123-456-2121" required/> </label>
 
-                        <label htmlFor="email"> Email: <input type="email" name="email" placeholder='myemail@gmail.com' required/> </label>
+                        <label htmlFor="email" classname="contact"> Email: <input type="email" name="email" className="contact" placeholder='myemail@gmail.com' required/> </label>
 
                         <button className='submit'> Submit </button>
 

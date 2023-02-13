@@ -45,7 +45,7 @@ function Display(props){
                                 onClick ={() => props.onClick(item.id)}
                                 onClick2 ={() => props.onClick2(item.id)}
                             />
-                    )
+                        )
                     }
                 </div>
             </div>
