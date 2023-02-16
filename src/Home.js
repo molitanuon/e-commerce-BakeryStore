@@ -4,12 +4,12 @@ import './index.css';
 import {GET} from './api.js';
 
 // need to changing length
-const orders = Array(5).fill(0);
+const orders = Array(6).fill(0);
 
 //render a single pastry card
 function Card(props){
     return(
-        <div className='card' style={{backgroundImage:`url(/images/${props.image})`}}> <div id="name">{props.name}</div>
+      <div className='card' style={{backgroundImage:`url(${props.image})`}}> <div id="name">{props.name}</div>
             {/* order bar  */}
                 <div className='nav-bar'>
                     <span className='Add' onClick={props.onClick}> + </span> 

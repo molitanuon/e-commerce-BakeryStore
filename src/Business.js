@@ -1,25 +1,53 @@
 import React, { useEffect, useState }from 'react';
 import { Link } from 'react-router-dom';
 import './index.css';
-import {GET} from './api.js';
+import {GET, POST} from './api.js';
+
+// move the card rendering to the Display function to change the background image 
+// based on if it was a dataURL or local image 
+
 
 //render a single pastry card
 function Card(props){
     return(
-        <div className='card' style={{backgroundImage:`url(/images/${props.image})`, height:'250px'}}> <div id="name">{props.name}</div></div>
+        <div className='card' style={{backgroundImage: `url(${props.image})`, height:'250px'}}> 
+            <div id="name">{props.name}</div>
+        </div>
     );
 }
 
 //renders all the pastries in the inventory
 function Display(props){
     const [user, setProduct] = useState({addProduct: false});
+    const [selectedImage,  setImageData] = useState(null);
 
     function addProduct(){
        setProduct({addProduct : user.addProduct ? false : true});
     }
 
     const writeToInventory=(event)=>{
+        event.preventDefault();
 
+        const product = {
+            "name" : event.target.name.value,
+            "price" : event.target.price.value,
+            "image" : selectedImage
+        };
+
+        POST('pastries', product);
+       
+        window.location='/login';
+    }
+
+    const handleFileSelect = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            setImageData(reader.result);
+          };
+        
+        reader.readAsDataURL(file);
     }
 
     return(
@@ -36,7 +64,8 @@ function Display(props){
                         <form className="addForm" onSubmit={writeToInventory}>
                         <label htmlFor="name" className='addProd'> Name: </label> <input type="text" name='name' className='addProd' required/>  <br/>
                         <label htmlFor="price"  className='addProd'>  Price: </label> <input type="number" name='price' className='addProd' required/> <br/>
-                        <label htmlFor="image"  className='addProd'> Image:  </label>  <input type="file" name='image'   accept="image/png, image/jpeg" className='addProd' required/> <br/>
+                        <label className='addProd'> Image:  </label>  <input type="file" accept="image/*" 
+                        onChange={handleFileSelect} className='addProd' required/> <br/>
                         
                         <button className="submit2"> Submit </button>
 
@@ -59,6 +88,7 @@ function Display(props){
             <button className='card' onClick={addProduct} style={{backgroundColor:'seashell'}} > <p style={{fontSize:'70px', color:'black'}}> + </p> </button>
 
             </div >
+
         </>
     );
 }
