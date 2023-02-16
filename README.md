@@ -11,7 +11,9 @@ it render a card and an order bar for every data the second component pass to it
 
 # Running the Application on VSC 
 1. Run 'npm install' on the terminal 
-2. Run 'npm start', application should open in a new window
+2. Run 'npm run startDb' : start the database
+3. Run 'npm run startDb2' : start the second database
+3. Run 'npm start', application should open in a new window
 
 <br>
 Disclaimer: The images used in the application are not my own. This is for self-growth purpose only.
