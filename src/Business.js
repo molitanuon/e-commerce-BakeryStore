@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './index.css';
 import {GET, POST} from './api.js';
 
+
 // move the card rendering to the Display function to change the background image 
 // based on if it was a dataURL or local image 
 
@@ -20,21 +21,28 @@ function Card(props){
 function Display(props){
     const [user, setProduct] = useState({addProduct: false});
     const [selectedImage,  setImageData] = useState(null);
-
+    
     function addProduct(){
        setProduct({addProduct : user.addProduct ? false : true});
     }
-
+   
     const writeToInventory=(event)=>{
         event.preventDefault();
 
         const product = {
             "name" : event.target.name.value,
             "price" : event.target.price.value,
-            "image" : selectedImage
         };
 
-        POST('pastries', product);
+        const imageURL = {
+            "link" : selectedImage
+        };
+
+        //post to images link to dataUrl 
+        POST('images',imageURL,'2');
+
+        //post to the inventory
+        POST('pastries',product, '1');
        
         window.location='/login';
     }
@@ -44,8 +52,9 @@ function Display(props){
         const reader = new FileReader();
 
         reader.onloadend = () => {
+            // const oneLineDataUrl = reader.result.replace(/^(data:.*?;base64,)/i, '');
             setImageData(reader.result);
-          };
+        };
         
         reader.readAsDataURL(file);
     }
@@ -75,20 +84,19 @@ function Display(props){
                 ) : ""}
 
             <div className="Display">
-            {
-                props.data && props.data.length>0 && props.data.map((item)=>
-                    <Card 
-                        name = {item.name}
-                        image = {item.image}
-                    />
-                )
-            }
-                        
+                    {
+                        props.imageData && props.imageData.length>0 && props.imageData.map((item, index) =>
+                            <Card 
+                                name = {props.data[index].name}
+                                image = {item.link}
+                            />
+                        )
+                    }
+            
             {/* Upload a product */}
             <button className='card' onClick={addProduct} style={{backgroundColor:'seashell'}} > <p style={{fontSize:'70px', color:'black'}}> + </p> </button>
 
             </div >
-
         </>
     );
 }
@@ -98,18 +106,26 @@ function Login(){
     // MUST CHANGE BACK TO FALSE AFTER DONE TESTING
     const [user, setLog] = useState({isLoggedIn: true});
 
-    const [state, setState] = useState({pastries: []});
+    const [state, setState] = useState({pastries:[]});
     const [customer, setState2] = useState({order:[]});
+    const [sta, setImages] = useState({images:[]});
+
+    async function fetchImages(apiEndpoint) {
+        const { data: Items } = await GET(apiEndpoint,'2');
+        if (Items) {
+          setImages({images:Items});
+        }
+    }
 
     async function fetchData(apiEndpoint) {
-        const { data: Items } = await GET(apiEndpoint);
+        const { data: Items } = await GET(apiEndpoint, '1');
         if (Items) {
           setState({pastries:Items});
         }
     }
 
     async function fetchOrders(apiEndpoint) {
-        const { data: Items } = await GET(apiEndpoint);
+        const { data: Items } = await GET(apiEndpoint, '1');
         if (Items) {
           setState2({order:Items});
         }
@@ -118,6 +134,7 @@ function Login(){
     useEffect(() => {
         fetchData('pastries');
         fetchOrders('orders');
+        fetchImages('images');
     },[]);
 
     // data to pass to order checklist
@@ -155,6 +172,7 @@ function Login(){
                        
                 <Display 
                     data = {state.pastries}
+                    imageData = {sta.images}
                 />
             </>
         )

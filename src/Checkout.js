@@ -25,7 +25,7 @@ const Checkout = () => {
             };
 
             // posting the customer data to inventory using axios
-            POST('orders', customer);
+            POST('orders', customer, '1');
 
             alert("Thank you ordering!")
         }
@@ -54,12 +54,12 @@ const Checkout = () => {
                     {   
                         datas && datas.length > 0 && datas.map((amt,id)=>{
                             if(amt !== 0){
-                                total += amt * pasData[id]['price'];
+                                total += amt * pasData[id-1]['price'];
                                 return(
                                     <tr> 
-                                        <td>{pasData[id]['name']}</td>
+                                        <td>{pasData[id-1]['name']}</td>
                                         <td style={{textAlign: "center"}}>{amt}</td>
-                                        <td style={{textAlign: "center"}}>${amt * pasData[id]['price']}</td>
+                                        <td style={{textAlign: "center"}}>${amt * pasData[id-1]['price']}</td>
                                     </tr>
                                 )
                             }
