@@ -21,7 +21,7 @@ const Checkout = () => {
                 "lastName" : event.target.lastname.value,
                 "telephone" : event.target.tele.value,
                 "email" : event.target.email.value,
-                "purchase" : datas
+                "purchase" : datas,
             };
 
             // posting the customer data to inventory using axios
@@ -63,6 +63,7 @@ const Checkout = () => {
                                     </tr>
                                 )
                             }
+                            else return("");
                         })
                     }
                 </table>

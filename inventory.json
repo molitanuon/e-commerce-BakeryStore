@@ -49,52 +49,39 @@
       "id": 1
     },
     {
-      "firstName": "Mary",
-      "lastName": "Wea",
+      "firstName": "Harry ",
+      "lastName": "Potter",
       "telephone": "125-544-4545",
-      "email": "mwea2321@gmail.com",
+      "email": "test32@gmail.com",
       "purchase": [
         0,
         0,
         0,
         1,
-        0,
-        1,
-        1
-      ],
-      "id": 2
-    },
-    {
-      "firstName": "Ray",
-      "lastName": "Ala",
-      "telephone": "123-322-2121",
-      "email": "fake@yahoo.com",
-      "purchase": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1
-      ],
-      "id": 3
-    },
-    {
-      "firstName": "Ron",
-      "lastName": "Weasley",
-      "telephone": "111-111-1111",
-      "email": "ronW@gmail.com",
-      "purchase": [
-        0,
-        0,
-        0,
-        0,
         0,
         2,
         0
       ],
       "id": 4
+    },
+    {
+      "firstName": "Ron",
+      "lastName": "Weasley",
+      "telephone": "123-322-2121",
+      "email": "test45@gmail.com",
+      "purchase": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "id": 5
     }
   ]
 }

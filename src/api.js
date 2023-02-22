@@ -19,3 +19,7 @@
             data
         })
     }
+
+    export const DELETE = (url, id, port) =>{
+        return axios.delete(`${apiBaseURL+port}/${url}/${id}`);
+    }

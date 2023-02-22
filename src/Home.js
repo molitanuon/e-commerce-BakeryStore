@@ -4,7 +4,7 @@ import './index.css';
 import {GET} from './api.js';
 
 // need to changing length
-const orders = Array(7).fill(0);
+const orders = Array(10).fill(0);
 
 //render a single pastry card
 function Card(props){
@@ -22,37 +22,40 @@ function Card(props){
 
 //renders all the pastries in the inventory
 function Display(props){
+
     const myData = {
         orders : orders, 
         pastries : props.data
-    }    
-        return (
-            <div>
-                <span className='header'>Top Pastries </span> 
+    } 
 
-                <Link to='/checkout' state={myData}>
-                    <img className= 'cart' src={ props.flagCart === false ? "images/cart.jpg" : "images/cartFull.png"}  alt=""/>
-                </Link>
+    return (
+        <div>
+            <span className='header'>Top Pastries </span> 
 
-                <div className="Display">
-                    {
-                        props.images && props.images.length>0 && props.images.map((item, index) =>
-                            <Card 
+            <Link to='/checkout' state={myData}>
+                 <img className= 'cart' src={ props.flagCart === false ? "images/cart.jpg" : "images/cartFull.png"}  alt=""/>
+            </Link>
+
+            <div className="Display">
+                {
+                    props.images && props.images.length>0 && props.images.map((item, index) =>
+                        <Card 
                                 name = {props.data[index].name}
                                 image = {item.link}
                                 count = {orders[item.id]}
                                 onClick ={() => props.onClick(item.id)}
                                 onClick2 ={() => props.onClick2(item.id)}
-                            />
-                        )
-                    }
-                </div>
+                        />
+                    )
+                }
             </div>
-          );
+        </div>
+    );
 }
 
 //render dashboard 
 class Home extends React.Component{
+
     constructor(props){
         super(props);
         this.state ={
@@ -89,7 +92,7 @@ class Home extends React.Component{
         })
      }
  
-     subHandleClick(id){
+    subHandleClick(id){
         if(orders[id] > 0) orders[id] -= 1;
         this.setState({
             flagCart : orders.reduce((res, num) => res += num) === 0 ? false : true

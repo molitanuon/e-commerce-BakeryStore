@@ -1,5 +1,5 @@
 import React, { useEffect, useState }from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './index.css';
 import {GET, POST} from './api.js';
 
@@ -52,7 +52,6 @@ function Display(props){
         const reader = new FileReader();
 
         reader.onloadend = () => {
-            // const oneLineDataUrl = reader.result.replace(/^(data:.*?;base64,)/i, '');
             setImageData(reader.result);
         };
         
@@ -103,11 +102,11 @@ function Display(props){
 
 function Login(){
 
+    const location = useLocation();
     // MUST CHANGE BACK TO FALSE AFTER DONE TESTING
-    const [user, setLog] = useState({isLoggedIn: true});
+    const [user, setLog] = useState({isLoggedIn:  location.state ? true : false});
 
     const [state, setState] = useState({pastries:[]});
-    const [customer, setState2] = useState({order:[]});
     const [sta, setImages] = useState({images:[]});
 
     async function fetchImages(apiEndpoint) {
@@ -124,22 +123,13 @@ function Login(){
         }
     }
 
-    async function fetchOrders(apiEndpoint) {
-        const { data: Items } = await GET(apiEndpoint, '1');
-        if (Items) {
-          setState2({order:Items});
-        }
-    }
-
     useEffect(() => {
         fetchData('pastries');
-        fetchOrders('orders');
         fetchImages('images');
     },[]);
 
     // data to pass to order checklist
     const myData = {
-        orders : customer.order, 
         pastries : state.pastries
     }    
 
@@ -163,11 +153,9 @@ function Login(){
    if(user.isLoggedIn === true){
         return(
             <>
-                <div className='navbar'>
-                    <button onClick={logout}>Logout</button>
-                    {/* to do : an order checklist, pass pastries list with state */}
-                    {/* <button onClick={""}>Orders</button> */}
-                    <Link to='/checklist' state={myData}> Orders </Link>
+                <div>
+                    <Link  className='navbar' to='/checklist' state={myData}> Orders </Link>
+                    <Link  className='navbar2' onClick={logout}>Logout</Link>
                 </div>
                        
                 <Display 

@@ -143,6 +143,18 @@ input.contact{
 
 /*================================================= Business Pg ======================================== */
 
+.navbar, .navbar2{
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 5px 5px;
+    margin-right: 10px;
+    float: left;
+}
+
+.navbar2{
+    float:right;
+}
+
 .loginForm{
     /* border: 2px dashed black; */
     background-color: white;
@@ -166,7 +178,7 @@ input.contact{
     margin-top: 10px;
 }
 
-/*                               Add a product Form                                                  */
+/*=================================================Add a product Form================================================= */
 .productForm{
     /* border: 2px solid red; */
 
@@ -201,25 +213,38 @@ input.addProd{
     margin-top: 5%;
     width: 90px;
     height: 20px;
-    margin-left: 12%;
+    margin-left: 25%;
 }
 
-/*                          ORDERS CHECKLIST                                    */
+/*================================================= ORDERS CHECKLIST=================================================*/
 .listTitle{
     font-size: 20px;
     text-align: left;
     color: black;
-
+    float: left;
 }
 
 .orderList{
-    font-size: 15px;
-    margin-top: 0px;
+    font-size: 16px;
+    font-family: Calibri;
     color: gray;
+    text-align: center;
 }
 
 input.largerCheckbox{
     width: 20px;
     height: 20px;
     margin-right: 20px;
+}
+
+.contactInfo{
+    font-size: 12px;
+    font-family: Calibri;
+    letter-spacing: 1.5px;
+    color:rgba(150, 137, 133, 0.851);
+}
+
+hr{
+    width: 80%;
+    float: left;
 }
