@@ -1,4 +1,5 @@
 {
+  "homepage" : "https://molitanuon.github.io/e-commerce-BakeryShop",
   "name": "bakery",
   "version": "0.1.0",
   "private": true,
@@ -13,6 +14,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "startDb": "json-server --watch inventory.json --port 3001",
     "startDb2": "json-server --watch dataUrl.json --port 3002",
