@@ -43,7 +43,7 @@ function Display(props){
                                 image = {item.link}
                                 //change count as well
                                 count = {orders.find(item => item.name === props.data[index].name) == null ? 0 : orders.find(item => item.name === props.data[index].name).count}
-                                onClick ={() => props.onClick(props.data[index].name)}
+                                onClick ={() => props.onClick(props.data[index].name,props.data[index].price )}
                                 onClick2 ={() => props.onClick2(props.data[index].name)}
                         />
                     )
