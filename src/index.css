@@ -95,7 +95,6 @@ a:hover{color:rgb(236, 147, 113);}
     padding-bottom: 10px;
 
     border-radius: 4px;
-
 }
 
 
@@ -131,7 +130,6 @@ td{
 
 form{
     margin-top: 50px;
-    padding-left: 10%;
 }
 
 input.contact{
@@ -156,26 +154,35 @@ input.contact{
 }
 
 .loginForm{
-    /* border: 2px dashed black; */
     background-color: white;
 
     text-align: center;
-    font-family: Chalkduster, fantasy;
+    font-family: Calibr;
     font-size: larger;
 
     padding-top: 30px;
     margin-top: 90px;
-    margin-left: 190px;
-    margin-right: 190px;
+    
+    margin-left: 20vw;
+    margin-right: 20vw;
 
     height: 500px;
     border-radius: 20px;
+   
+    box-shadow: 10px 5px 5px rgb(95, 92, 92);
 }
 
 .login{
     text-align: center;
     width: 100px;
     margin-top: 10px;
+}
+
+input.loginName, input.loginPSW{
+    min-width: 30vw;
+    margin-bottom: 40px;
+    text-align: center;
+    font-size: large;
 }
 
 /*=================================================Add a product Form================================================= */
@@ -196,6 +203,7 @@ input.contact{
 
 .addForm{
     text-align: left;
+    padding-left: 10%;
 }
 
 label.addProd{
@@ -242,9 +250,4 @@ input.largerCheckbox{
     font-family: Calibri;
     letter-spacing: 1.5px;
     color:rgba(150, 137, 133, 0.851);
-}
-
-hr{
-    width: 80%;
-    float: left;
 }

@@ -4,7 +4,7 @@ import './index.css';
 import {GET} from './api.js';
 
 // need to changing length
-const orders = Array(10).fill(0);
+let orders = [];
 
 //render a single pastry card
 function Card(props){
@@ -24,8 +24,7 @@ function Card(props){
 function Display(props){
 
     const myData = {
-        orders : orders, 
-        pastries : props.data
+        orders : orders
     } 
 
     return (
@@ -42,9 +41,10 @@ function Display(props){
                         <Card 
                                 name = {props.data[index].name}
                                 image = {item.link}
-                                count = {orders[item.id]}
-                                onClick ={() => props.onClick(item.id)}
-                                onClick2 ={() => props.onClick2(item.id)}
+                                //change count as well
+                                count = {orders.find(item => item.name === props.data[index].name) == null ? 0 : orders.find(item => item.name === props.data[index].name).count}
+                                onClick ={() => props.onClick(props.data[index].name)}
+                                onClick2 ={() => props.onClick2(props.data[index].name)}
                         />
                     )
                 }
@@ -59,7 +59,7 @@ class Home extends React.Component{
     constructor(props){
         super(props);
         this.state ={
-            flagCart: orders.reduce((res, num) => res += num) === 0 ? false : true,
+            flagCart: orders.length === 0 ? false : true,
             pastries: [],
             images: []
         }
@@ -85,17 +85,37 @@ class Home extends React.Component{
         this.getImages('images');
     }
 
-    addHandleClick(id){
-        orders[id] += 1;
+    addHandleClick(name, price){
+
+        let item = orders.find(item => item.name === name);
+        if(item==null){
+            let order = {
+                "name":name,
+                "price":price,
+                "count": 1
+            }
+
+            orders.push(order);
+        }
+        else{
+            item.count+=1;
+        }
+
         this.setState({
-            flagCart : orders.reduce((res, num) => res += num) === 0 ? false : true
+            flagCart : orders.length === 0  ? false : true
         })
-     }
+    }
  
-    subHandleClick(id){
-        if(orders[id] > 0) orders[id] -= 1;
+    subHandleClick(name){
+       
+        let item = orders.find(item => item.name === name);
+        if(item){
+            if(item.count >= 2) item.count -= 1;
+            else if(item.count === 1) orders = orders.filter(x => x.name !== name);
+        }
+
         this.setState({
-            flagCart : orders.reduce((res, num) => res += num) === 0 ? false : true
+            flagCart : orders.length === 0 ? false : true
         })
     }
 
@@ -104,8 +124,8 @@ class Home extends React.Component{
             <Display 
                 data = {this.state.pastries}
                 images = {this.state.images}
-                onClick ={(id) => this.addHandleClick(id)}
-                onClick2 ={(id) => this.subHandleClick(id)}
+                onClick ={(name,price) => this.addHandleClick(name,price)}
+                onClick2 ={(name) => this.subHandleClick(name)}
                 flagCart = {this.state.flagCart}
             />
         )

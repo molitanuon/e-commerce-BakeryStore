@@ -1,24 +1,44 @@
 import React, { useEffect, useState }from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation} from 'react-router-dom';
 import './index.css';
-import {GET, POST} from './api.js';
-
-
-// move the card rendering to the Display function to change the background image 
-// based on if it was a dataURL or local image 
-
+import {GET, POST, DELETE} from './api.js';
+var queue = [];
 
 //render a single pastry card
 function Card(props){
+    const [pas, setState] = useState({isChecked:false});
+
+    const handleClick=()=>{
+
+        if(!pas.isChecked){
+            queue.push(props.id);
+        }else{
+            var found = false;
+            while(queue.length > 0 && found === false ){
+                if(queue[0] === props.id) {queue.shift(); found = true;}
+                else{
+                    queue.push(queue[0]);
+                    queue.shift();
+                }
+            }
+        }
+        
+        setState({isChecked: !pas.isChecked});
+    }
+
     return(
         <div className='card' style={{backgroundImage: `url(${props.image})`, height:'250px'}}> 
-            <div id="name">{props.name}</div>
+             <div>
+                <input type="checkbox" onClick={handleClick} className='largerCheckbox'/> 
+                <span id="name"> {props.name}</span>
+            </div>
         </div>
     );
 }
 
 //renders all the pastries in the inventory
 function Display(props){
+
     const [user, setProduct] = useState({addProduct: false});
     const [selectedImage,  setImageData] = useState(null);
     
@@ -43,8 +63,10 @@ function Display(props){
 
         //post to the inventory
         POST('pastries',product, '1');
-       
-        window.location='/login';
+
+        const state = {data: true};
+        const queryString = `?data=${JSON.stringify(state)}`;
+        window.location = `/login${queryString}`;
     }
 
     const handleFileSelect = (event) => {
@@ -88,6 +110,7 @@ function Display(props){
                             <Card 
                                 name = {props.data[index].name}
                                 image = {item.link}
+                                id = {item.id}
                             />
                         )
                     }
@@ -103,8 +126,9 @@ function Display(props){
 function Login(){
 
     const location = useLocation();
+    const newState = location.search ? JSON.parse(decodeURIComponent(location.search.split("=")[1])) : null;
     // MUST CHANGE BACK TO FALSE AFTER DONE TESTING
-    const [user, setLog] = useState({isLoggedIn:  location.state ? true : false});
+    const [user, setLog] = useState({isLoggedIn: (location.state || (newState && newState.data)) ? true : false});
 
     const [state, setState] = useState({pastries:[]});
     const [sta, setImages] = useState({images:[]});
@@ -145,6 +169,20 @@ function Login(){
         }
     };
 
+
+    const handleDelete=(event)=>{
+        event.preventDefault();
+        while(queue.length > 0){
+            DELETE('pastries', queue[0], '1');
+            DELETE('images', queue[0], '2');
+            queue.shift();
+        }
+       
+        const state = {data: true};
+        const queryString = `?data=${JSON.stringify(state)}`;
+        window.location = `/login${queryString}`;
+    }
+
     // Log user out
     const logout = () =>{
         setLog({isLoggedIn: false});
@@ -155,7 +193,8 @@ function Login(){
             <>
                 <div>
                     <Link  className='navbar' to='/checklist' state={myData}> Orders </Link>
-                    <Link  className='navbar2' onClick={logout}>Logout</Link>
+                    <Link  className='navbar2' onClick={logout}>Logout</Link> 
+                    <Link className="navbar" onClick={handleDelete}> Delete </Link>
                 </div>
                        
                 <Display 
@@ -171,8 +210,8 @@ function Login(){
             <div className='loginForm'>
                 Log In
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="username">  </label> <input type="text" name='username' placeholder="USERNAME" required/> <br/>
-                    <label htmlFor="password">  </label> <input type="password" name='password' placeholder="PASSWORD" required/> <br/>
+                    <label htmlFor="username" >  </label> <input className='loginName' type="text" name='username' placeholder="USERNAME" required/> <br/>
+                    <label htmlFor="password" >  </label> <input className='loginPSW' type="password" name='password' placeholder="PASSWORD" required/> <br/>
                     <button className='login'> Login </button>
                 </form>
             </div>

@@ -27,7 +27,7 @@
     },
     {
       "name": "Apple Pie ",
-      "price": "10",
+      "price": "14",
       "id": 6
     }
   ],
@@ -36,52 +36,58 @@
       "firstName": "John",
       "lastName": "Wayne",
       "telephone": "123-322-2121",
-      "email": "test1@gmail.com",
+      "email": "test232@gmail.com",
       "purchase": [
-        0,
-        0,
-        1,
-        1,
-        1,
-        0,
-        0
+        {
+          "name": "Tart",
+          "price": "12",
+          "count": 1
+        },
+        {
+          "name": "Cheese Cake",
+          "price": "25",
+          "count": 1
+        }
       ],
       "id": 1
     },
     {
-      "firstName": "Harry ",
+      "firstName": "Harry",
       "lastName": "Potter",
-      "telephone": "125-544-4545",
-      "email": "test32@gmail.com",
+      "telephone": "121-121-1212",
+      "email": "hpotter21@gmail.com",
       "purchase": [
-        0,
-        0,
-        0,
-        1,
-        0,
-        2,
-        0
+        {
+          "name": "Apple Pie ",
+          "price": "13",
+          "count": 2
+        },
+        {
+          "name": "Cupcake",
+          "price": "5",
+          "count": 1
+        },
+        {
+          "name": "Macarons",
+          "price": "35",
+          "count": 1
+        }
       ],
-      "id": 4
+      "id": 2
     },
     {
       "firstName": "Ron",
       "lastName": "Weasley",
-      "telephone": "123-322-2121",
+      "telephone": "111-111-1111",
       "email": "test45@gmail.com",
       "purchase": [
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0
+        {
+          "name": "Creme Brulee",
+          "price": "15",
+          "count": 2
+        }
       ],
-      "id": 5
+      "id": 3
     }
   ]
 }

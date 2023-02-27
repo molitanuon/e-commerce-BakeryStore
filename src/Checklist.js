@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Link, useLocation} from "react-router-dom";
+import {Link} from "react-router-dom";
 import './index.css';
 import {GET, DELETE} from './api.js';
 
@@ -28,7 +28,7 @@ function Card(props){
     }
 
     return(
-        <div className='card'style={{backgroundColor:"peachpuff"}} >
+        <div className='card'style={{backgroundColor:"peachpuff", minHeight:'100px'}} >
             <div className='listTitle'> 
                 <label className='complete'></label>
                 <input type="checkbox" onClick={handleClick} className='largerCheckbox'/> 
@@ -36,7 +36,7 @@ function Card(props){
 
                 <div className='contactInfo'> 
                     Contact Information <br/>
-                    <hr/> <br/>
+                    <hr style={{width: "80%", float: "left"}}/> <br/>
                     Email : {props.email} <br/>
                     Tel : {props.tele}
                 </div>
@@ -44,11 +44,9 @@ function Card(props){
 
               <div className='orderList'>
                 {
-                    props.purchase && props.purchase.length > 0 && props.purchase.map((amt, index)=>{
-                        if(amt !== 0){
-                            return(<p>{amt} {amt > 1 ? "orders" : "order"} of {props.pasData[index-1]['name']}</p>);
-                        }
-                        else return("");
+                    props.purchase && props.purchase.length > 0 && props.purchase.map((item)=>{
+                        return(<p>{item.count} {item.count > 1 ? "orders" : "order"} of {item.name}</p>);
+                        
                     })
                 }
             </div>
@@ -59,8 +57,8 @@ function Card(props){
 
 const Checklist = () => {
 
-    const location = useLocation();
-    let pasData = location.state.pastries;
+    // const location = useLocation();
+    // let pasData = location.state.pastries;
     const [customer, setState2] = useState({order:[]});
 
     const handleSubmit=(event)=>{
@@ -94,14 +92,13 @@ const Checklist = () => {
                     // data from inventory
                     customer.order && customer.order.length>0 && customer.order.map((item)=>
                     {
-        
                         return(
                             <Card   
                                 fname = {item.firstName}
                                 lname = {item.lastName}
                                 email = {item.email}
                                 tele = {item.telephone}
-                                pasData = {pasData}
+                                // pasData = {pasData}
                                 purchase = {item.purchase}
                                 id = {item.id}
                             />    

@@ -9,7 +9,6 @@ const Checkout = () => {
     //get orders from ocation 
     const location = useLocation();
     let datas = location.state.orders;
-    let pasData = location.state.pastries;
     let total = 0;
 
     const orderSubmit=(event)=>{
@@ -52,18 +51,16 @@ const Checkout = () => {
                     </tr>
 
                     {   
-                        datas && datas.length > 0 && datas.map((amt,id)=>{
-                            if(amt !== 0){
-                                total += amt * pasData[id-1]['price'];
+                        datas && datas.length > 0 && datas.map((item)=>{
+                           
+                                total += item.count * item.price;
                                 return(
                                     <tr> 
-                                        <td>{pasData[id-1]['name']}</td>
-                                        <td style={{textAlign: "center"}}>{amt}</td>
-                                        <td style={{textAlign: "center"}}>${amt * pasData[id-1]['price']}</td>
+                                        <td>{item.name}</td>
+                                        <td style={{textAlign: "center"}}>{item.count}</td>
+                                        <td style={{textAlign: "center"}}>${item.count * item.price}</td>
                                     </tr>
                                 )
-                            }
-                            else return("");
                         })
                     }
                 </table>
@@ -73,7 +70,7 @@ const Checkout = () => {
                 {/* Customer Information Form */}
                 <div> 
                     <h1> Contact Information </h1>
-                    <form onSubmit={orderSubmit}>
+                    <form onSubmit={orderSubmit} style={{paddingLeft:"10%"}}>
                         <label htmlFor="firstname" classname="contact"> First Name:  <input type="text" name="firstname"  className="contact" required/> </label>
 
                         <label htmlFor="lastname" classname="contact"> Last Name: <input type="text" name="lastname" className="contact" required/></label><br/>
