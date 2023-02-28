@@ -47,6 +47,8 @@ body{
     border-radius: 7px;
     margin-top: 150px;
     margin-left: 30%;
+
+    border: 2px solid red;
 }
 
 .Add, .Remove, .Amount{

@@ -11,6 +11,7 @@ function Card(props){
     return(
       <div className='card' style={{backgroundImage:`url(${props.image})`}}> <div id="name">{props.name}</div>
             {/* order bar  */}
+                <div className='Add' style={{width:'40px'}}>${props.price}</div>
                 <div className='nav-bar'>
                     <span className='Add' onClick={props.onClick}> + </span> 
                     <span className='Amount' > {props.count} </span>
@@ -41,7 +42,7 @@ function Display(props){
                         <Card 
                                 name = {props.data[index].name}
                                 image = {item.link}
-                                //change count as well
+                                price = {props.data[index].price}
                                 count = {orders.find(item => item.name === props.data[index].name) == null ? 0 : orders.find(item => item.name === props.data[index].name).count}
                                 onClick ={() => props.onClick(props.data[index].name,props.data[index].price )}
                                 onClick2 ={() => props.onClick2(props.data[index].name)}
